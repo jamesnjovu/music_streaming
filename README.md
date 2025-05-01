@@ -146,32 +146,33 @@ After setting up the database with seed data, you can use the following credenti
 
 ## Troubleshooting
 
-### Database Connection Issues
+If you encounter any issues during setup or operation, please refer to our [Troubleshooting Guide](docs/troubleshooting.md) which covers common problems and their solutions.
+
+### Common Issues
+
+#### Database Connection Issues
 - Ensure PostgreSQL is running and accessible
 - Check that the database credentials in `.env` are correct
 - If using Docker, ensure the PostgreSQL container is running: `docker ps`
 
-### Redis Connection Issues
+#### Redis Connection Issues
 - Ensure Redis is running and accessible
 - If using Docker, check the Redis container status: `docker ps`
 
-### File Upload Issues
+#### File Upload Issues
 - Ensure the upload directories exist and have proper permissions
 - Check the maximum file size configuration in `.env`
 
-### JWT Authentication Issues
+#### JWT Authentication Issues
 - Verify that JWT secrets are properly set in the `.env` file
 - Check that token expiration times are appropriate for your use case
 
-### Docker Issues
+#### Docker Issues
 - Run `docker-compose logs` to view container logs
 - Ensure ports are not already in use by other applications
 - Check docker-compose configuration for any errors
 
-### For further assistance
-- Check the application logs in the console or log files
-- Consult the API documentation at `/api-docs`
-- Submit an issue on the project repository
+For more detailed troubleshooting steps, see the full [Troubleshooting Guide](docs/troubleshooting.md).
 
 ## Project Structure
 

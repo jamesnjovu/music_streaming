@@ -2,7 +2,7 @@ const { ListeningSession, User, Track, Artist } = require('../../models');
 const { sessionsService } = require('../../services/sessions.service');
 const { getRedisClient } = require('../../services/streaming.service');
 const logger = require('../../utils/logger');
-const { createError } = require('../../utils/errorHandler');
+const { createError } = require('../../middlewares/errorHandler');
 
 /**
  * Create a new listening session

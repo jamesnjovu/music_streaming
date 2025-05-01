@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { Track, User } = require('../../models');
 const logger = require('../../utils/logger');
-const { createError } = require('../../utils/errorHandler');
+const { createError } = require('../../middlewares/errorHandler');
 const { streamingService } = require('../../services/streaming.service');
 const { recommendationService } = require('../../services/recommendation.service');
 
@@ -28,8 +28,8 @@ exports.streamTrack = async (req, res, next) => {
     }
 
     // Get the file path based on quality
-    const filePath = quality === 'high' && track.filePathHQ 
-      ? track.filePathHQ 
+    const filePath = quality === 'high' && track.filePathHQ
+      ? track.filePathHQ
       : track.filePath;
 
     // Check if file exists
@@ -55,21 +55,21 @@ exports.streamTrack = async (req, res, next) => {
       const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
       const chunkSize = (end - start) + 1;
       const file = fs.createReadStream(filePath, { start, end });
-      
+
       res.writeHead(206, {
         'Content-Range': `bytes ${start}-${end}/${fileSize}`,
         'Accept-Ranges': 'bytes',
         'Content-Length': chunkSize,
         'Content-Type': 'audio/mpeg',
       });
-      
+
       file.pipe(res);
     } else {
       res.writeHead(200, {
         'Content-Length': fileSize,
         'Content-Type': 'audio/mpeg',
       });
-      
+
       fs.createReadStream(filePath).pipe(res);
     }
   } catch (error) {
@@ -115,21 +115,21 @@ exports.streamPublicTrack = async (req, res, next) => {
       const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
       const chunkSize = (end - start) + 1;
       const file = fs.createReadStream(filePath, { start, end });
-      
+
       res.writeHead(206, {
         'Content-Range': `bytes ${start}-${end}/${fileSize}`,
         'Accept-Ranges': 'bytes',
         'Content-Length': chunkSize,
         'Content-Type': 'audio/mpeg',
       });
-      
+
       file.pipe(res);
     } else {
       res.writeHead(200, {
         'Content-Length': fileSize,
         'Content-Type': 'audio/mpeg',
       });
-      
+
       fs.createReadStream(filePath).pipe(res);
     }
   } catch (error) {

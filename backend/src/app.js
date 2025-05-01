@@ -17,9 +17,10 @@ const userRoutes = require('./api/users/routes');
 const adminRoutes = require('./api/admin/routes');
 const streamingRoutes = require('./api/streaming/routes');
 const sessionsRoutes = require('./api/sessions/routes');
+const paymentRoutes = require('./api/payment/routes');
 
 // Import middlewares
-const errorHandler = require('./middlewares/errorHandler');
+const { errorHandler } = require('./middlewares/errorHandler');
 const { authenticateJWT } = require('./middlewares/auth');
 
 const app = express();
@@ -76,6 +77,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/tracks', trackRoutes);
 app.use('/api/albums', albumRoutes);
 app.use('/api/artists', artistRoutes);
+app.use('/api/payment', paymentRoutes);
 
 // Protected routes
 app.use('/api/playlists', authenticateJWT, playlistRoutes);

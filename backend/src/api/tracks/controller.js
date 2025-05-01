@@ -6,7 +6,7 @@ const fs = require('fs');
 const { v4: uuidv4 } = require('uuid');
 const { recommendationService } = require('../../services/recommendation.service');
 const logger = require('../../utils/logger');
-const { createError } = require('../../utils/errorHandler');
+const { createError } = require('../../middlewares/errorHandler');
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({

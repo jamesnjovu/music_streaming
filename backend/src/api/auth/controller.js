@@ -1,8 +1,8 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { User } = require('../../models');
+const { sequelize, User } = require('../../models');
 const logger = require('../../utils/logger');
-const { createError } = require('../../utils/errorHandler');
+const { createError } = require('../../middlewares/errorHandler');
 
 /**
  * Register a new user
